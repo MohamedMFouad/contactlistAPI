@@ -1,29 +1,25 @@
 'use strict';
 
 module.exports = function(Contact) {
-    Contact.remoteMethod('addcontacts', {
-        accepts: {
-            arg: 'data',
-            type: {
-                "id": "string",
-                "userId": "string",
-                "user": {},
-                "totalScore": 0,
-                "tags": []
-            },
-            http: {
-                source: 'body'
-            }
-        },
-        returns: {
-            arg: 'score',
-            type: 'Challenge'
-        },
-        http: {
-            path: '/addcontacts',
-            verb: 'post'
-        }
-    });
 
-   
+    Contact.addContacts = function(obj, cb){
+        let user = {
+            firstName: obj.firstName,
+            lastName: obj.lastName,
+            email: obj.email,
+            mobile: obj.mobile,
+            id: obj.id,
+            relationId: obj.id,
+            accoutId: obj.id,
+            userId:obj.id
+        } 
+    
+      
+    }
+    Contact.remoteMethod('addContacts', {
+
+        accepts: { arg: 'data', type: 'object', http: { source: 'body' } },
+        returns: { arg: 'addContacts', type: 'array' },
+        http: { path: '/addContacts', verb: 'post' }
+     });   
 };
